@@ -60,7 +60,6 @@ export default function Home() {
         <div>
           {leaderData ? <h2>Elders</h2> : null}
 
-          {console.log("ED: ", leaderData)}
           {leaderData
             ? leaderData[0].users.map((elder) => (
                 <div style={{ marginBottom: "2rem" }} key={elder.id}>
