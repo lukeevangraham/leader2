@@ -28,7 +28,6 @@ export default function Home() {
       response = await response;
       if (response) {
         const jwt = response.accessToken;
-        console.log("jwt: ", jwt);
 
         let leaderResponse = await fetch(
           "https://admin.rbcommunity.org/leader-groups",
