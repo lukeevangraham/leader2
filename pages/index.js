@@ -43,7 +43,7 @@ export default function Home() {
 
     getUserData();
     prepLeader();
-  }, []);
+  }, [userData]);
 
   return (
     <>
@@ -55,7 +55,7 @@ export default function Home() {
       </Head>
       <Toolbar />
       <main>
-        <h1>Welcome to RB Community Church's Leader Site</h1>
+        <h1>Welcome to RB Community Church&apos;s Leader Site</h1>
         <div>
           {leaderData ? <h2>Elders</h2> : null}
 
