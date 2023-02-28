@@ -57,8 +57,9 @@ const ContactTable = ({ contacts }) => {
             { title: "First", field: "firstName" },
             { title: "Last", field: "lastName", defaultSort: "asc" },
             { title: "Email", field: "email" },
-            { title: "Cell Phone", field: "cellPhone" },
-            { title: "Home Phone", field: "homePhone" },
+            // { title: "Cell Phone", field: "cellPhone" },
+            // { title: "Home Phone", field: "homePhone" },
+            { title: "Focus", field: "responsibility" },
             { title: "Role", field: "position" },
           ]}
           data={contacts}
@@ -67,10 +68,11 @@ const ContactTable = ({ contacts }) => {
           options={{
             paging: false,
             headerStyle: { fontWeight: "900" },
+            rowStyle: { fontFamily: `"Roboto","Helvetica","Arial",sans-serif` },
           }}
           detailPanel={(rowData) => (
             <div
-              style={{ padding: "1rem 5rem", display: "flex", gap: "1.5rem" }}
+              style={{ padding: "1rem 4rem", display: "flex", gap: "1.5rem" }}
             >
               <div>
                 <div>
@@ -81,12 +83,20 @@ const ContactTable = ({ contacts }) => {
                   {rowData.city}, CA {rowData.zipCode}
                 </div>
               </div>
-              {rowData.responsibility ? (
+              {rowData.cellPhone ? (
                 <div>
                   <div>
-                    <strong>Responsibility</strong>
+                    <strong>Cell Phone</strong>
                   </div>
-                  <div>{rowData.responsibility}</div>
+                  <div>{rowData.cellPhone}</div>
+                </div>
+              ) : null}
+              {rowData.homePhone ? (
+                <div>
+                  <div>
+                    <strong>Home Phone</strong>
+                  </div>
+                  <div>{rowData.homePhone}</div>
                 </div>
               ) : null}
             </div>
