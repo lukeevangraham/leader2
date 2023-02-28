@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Toolbar from "@/components/Navigation/Toolbar/Toolbar";
 import { getSession } from "next-auth/react";
-import { getToken } from "next-auth/jwt";
+
+import ContactTable from "@/components/ContactTable/ContactTable";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +18,6 @@ export default function Home() {
       let response = await getSession();
       response = await response;
       setUserData(response);
-      return userData;
     }
 
     async function prepLeader() {
@@ -37,13 +34,30 @@ export default function Home() {
         );
 
         leaderResponse = await leaderResponse.json();
-        setLeaderData(leaderResponse);
+
+        console.log("LR: ", leaderResponse);
+
+        leaderResponse[0].users.forEach((person) => {
+          person.position = "Elder";
+        });
+        leaderResponse[1].users.forEach((person) => {
+          person.position = "Deacon";
+        });
+        leaderResponse[2].users.forEach((person) => {
+          person.position = "Staff";
+        });
+        
+        let flattenedArray = leaderResponse[0].users
+          .concat(leaderResponse[1].users)
+          .concat(leaderResponse[2].users);
+
+        setLeaderData(flattenedArray);
       }
     }
 
     getUserData();
     prepLeader();
-  }, [userData]);
+  }, []);
 
   return (
     <>
@@ -55,26 +69,9 @@ export default function Home() {
       </Head>
       <Toolbar />
       <main>
+        {console.log("Leader Data: ", leaderData)}
         <h1>Welcome to RB Community Church&apos;s Leader Site</h1>
-        <div>
-          {leaderData ? <h2>Elders</h2> : null}
-
-          {leaderData
-            ? leaderData[0].users.map((elder) => (
-                <div style={{ marginBottom: "2rem" }} key={elder.id}>
-                  <div>{`${elder.firstName} ${elder.lastName}`}</div>
-                  <div>{elder.address}</div>
-                  <div>{`${elder.city}, CA ${elder.zipCode}`}</div>
-                  <div style={{ marginTop: ".33rem" }}>
-                    Cell Phone: {elder.cellPhone}
-                  </div>
-                  <div>Home Phone: {elder.homePhone}</div>
-                  <a href={`mailto:${elder.email}`}>{elder.email}</a>
-                  <div>Area of responsibility: {elder.responsibility}</div>
-                </div>
-              ))
-            : null}
-        </div>
+        {leaderData ? <ContactTable contacts={leaderData} /> : null}
       </main>
     </>
   );
