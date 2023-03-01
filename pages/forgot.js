@@ -10,15 +10,6 @@ const Forgot = () => {
 
     setMessageStatus(1);
 
-    // console.log("HELLO: ", e.target.email.value)
-
-    // let response = await fetch(
-    //   "https://admin.rbcommunity.org/auth/forgot-password",
-    //   {
-    //     email: e.target.email.value,
-    //   }
-    // );
-
     let response = await axios.post(
       "https://admin.rbcommunity.org/auth/forgot-password",
       {
@@ -45,7 +36,7 @@ const Forgot = () => {
       renderAction = <div>Sending you a reset link...</div>;
       break;
     case 2:
-      renderAction = <div>Reset link sent. Check your email to continue.</div>;
+      renderAction = <div>Reset link sent. Check your email to finish resetting your password.</div>;
       break;
     default:
       renderAction = (
