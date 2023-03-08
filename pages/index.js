@@ -36,8 +36,6 @@ export default function Home() {
 
         leaderResponse = await leaderResponse.json();
 
-        console.log("LR: ", leaderResponse);
-
         leaderResponse[0].users.forEach((person) => {
           person.position = "Elder";
         });

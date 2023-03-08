@@ -50,7 +50,7 @@ const Reset = () => {
           label="New Password"
           type="password"
           name="newPassword"
-          sx={{ width: "20rem" }}
+          sx={{ width: "20rem", marginBottom: "1rem" }}
         />
       </div>
       <div>
@@ -93,22 +93,22 @@ const Reset = () => {
       break;
     case 2:
       newPasswordForm = (
-        <div>Uh oh, something unusual happened. Perhaps try again?</div>
+        <Typography>Uh oh, something unusual happened. Perhaps try again?</Typography>
       );
       break;
     case 3:
       newPasswordForm = (
         <>
-          <div>
+          <Typography>
             Your passwords do not match. Please try entering the password again.
-          </div>
+          </Typography>
           <br />
           {defaultPasswordForm}
         </>
       );
       break;
     case 4:
-      newPasswordForm = <div>Resetting...</div>;
+      newPasswordForm = <Typography>Resetting...</Typography>;
       break;
     default:
       newPasswordForm = defaultPasswordForm;
