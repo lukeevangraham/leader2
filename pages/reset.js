@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 import CustomToolbar from "@/components/Navigation/Toolbar/Toolbar";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 
 const Reset = () => {
   const [messageStatus, setMessageStatus] = useState(0);
