@@ -8,7 +8,7 @@ const CustomToolbar = () => {
       <AppBar position="static" sx={{ marginBottom: "2rem" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link href="/">RB Community Leaders</Link>
+            <Link href="/">RB Community Leader</Link>
           </Typography>
           <LoginButton />
         </Toolbar>
