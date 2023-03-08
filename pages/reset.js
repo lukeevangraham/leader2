@@ -81,14 +81,14 @@ const Reset = () => {
   switch (messageStatus) {
     case 1:
       newPasswordForm = (
-        <div>
+        <Typography>
           Your password has been reset.{" "}
           <Link
             href={`/api/auth/signin?callbackUrl=${process.env.NEXT_PUBLIC_NEXTAUTH_URL}`}
           >
             Click here to log in with that new password.
           </Link>
-        </div>
+        </Typography>
       );
       break;
     case 2:
