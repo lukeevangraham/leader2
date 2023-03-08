@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import { Button, Typography } from "@mui/material";
 import Link from "next/link";
 
 export default function Component() {
@@ -8,18 +9,31 @@ export default function Component() {
   if (session) {
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <Typography sx={{ marginRight: "2rem" }}>
+          Signed in as {session.user.email}
+        </Typography>
+
+        <Button onClick={() => signOut()} color="inherit">
+          Logout
+        </Button>
+        {/* <button onClick={() => signOut()}>Sign out</button> */}
       </>
     );
   }
   return (
-    <div style={{ display: "flex", gap: "1rem" }}>
-      <div>
+    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+      <Link href="/forgot">
+        <Typography sx={{ alignSelf: "center", justifyContent: "center" }}>
+          Forgot password?
+        </Typography>
+      </Link>
+      {/* <div>
         Not signed in <br />
-      </div>
-      <button onClick={() => signIn()}>Sign in</button>
-      <Link href="/forgot">I forgot my password</Link>
+      </div> */}
+      <Button onClick={() => signIn()} color="inherit">
+        Login
+      </Button>
+      {/* <button onClick={() => signIn()}>Sign in</button> */}
     </div>
   );
 }

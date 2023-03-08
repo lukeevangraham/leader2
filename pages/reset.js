@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
+import CustomToolbar from "@/components/Navigation/Toolbar/Toolbar";
+import { Button, TextField } from "@mui/material";
 
 const Reset = () => {
   const [messageStatus, setMessageStatus] = useState(0);
@@ -31,7 +33,7 @@ const Reset = () => {
         console.log("R: ", response);
       } catch (error) {
         console.log("E: ", error);
-        setMessageStatus(2)
+        setMessageStatus(2);
       }
     } else {
       console.log("uh oh");
@@ -42,18 +44,35 @@ const Reset = () => {
   const defaultPasswordForm = (
     <form onSubmit={submitNewPassword}>
       <div>
-        <label htmlFor="newPassword">New Password</label>
-        <input type="password" name="newPassword" id="newPassword" />
+        <TextField
+          required
+          id="newPassword"
+          label="New Password"
+          type="password"
+          name="newPassword"
+          sx={{ width: "20rem" }}
+        />
       </div>
       <div>
-        <label htmlFor="newPassword">Confirm New Password</label>
+        {/* <label htmlFor="newPassword">Confirm New Password</label>
         <input
           type="password"
           name="newPasswordConfirm"
           id="newPasswordConfirm"
+        /> */}
+        <TextField
+          required
+          id="newPasswordConfirm"
+          label="Confirm New Password"
+          type="password"
+          name="newPasswordConfirm"
+          sx={{ width: "20rem" }}
         />
       </div>
-      <button>Submit</button>
+      {/* <button>Submit</button> */}
+      <Button type="submit" sx={{ marginTop: "1rem" }}>
+        Submit
+      </Button>
     </form>
   );
 
@@ -64,7 +83,11 @@ const Reset = () => {
       newPasswordForm = (
         <div>
           Your password has been reset.{" "}
-          <Link href={`/api/auth/signin?callbackUrl=${process.env.NEXT_PUBLIC_NEXTAUTH_URL}`}>Click here to log in with that new password.</Link>
+          <Link
+            href={`/api/auth/signin?callbackUrl=${process.env.NEXT_PUBLIC_NEXTAUTH_URL}`}
+          >
+            Click here to log in with that new password.
+          </Link>
         </div>
       );
       break;
@@ -92,7 +115,12 @@ const Reset = () => {
       break;
   }
 
-  return <div>{newPasswordForm}</div>;
+  return (
+    <>
+      <CustomToolbar />
+      {newPasswordForm}
+    </>
+  );
 };
 
 export default Reset;
