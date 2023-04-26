@@ -34,6 +34,8 @@ export const authOptions = {
         });
         const user = await res.json();
 
+        console.log(`LOGIN from ${user.user.firstName} ${user.user.lastName}: ${user.user.email}`, )
+
         const flattenedUser = { ...user.user, jwt: user.jwt };
 
         // If no error and we have user data, return it
